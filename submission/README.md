@@ -16,7 +16,7 @@ Key features implemented on top of the initial scaffold:
 
 ## Images or Video Demo
 
-**Video Demo:** [Click here to watch the Video Demo](./media/video-demo.mp4)
+**Video Demo:** [Click here to watch the Video Demo](https://drive.google.com/file/d/1vB05zufuhNueIwN8sPiOMaHNq3N-OarT/view?usp=sharing)
 
 **Screenshots:**
 
