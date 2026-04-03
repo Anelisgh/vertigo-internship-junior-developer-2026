@@ -2,6 +2,7 @@ import { Elysia } from "elysia";
 import { cors } from "@elysiajs/cors";
 import { authRoutes } from "./src/api/auth.routes";
 import { marketRoutes } from "./src/api/markets.routes";
+import { userRoutes } from "./src/api/users.routes";
 import { jwtPlugin } from "./src/plugins/jwt";
 
 const PORT = Number(process.env.PORT || 4001);
@@ -11,7 +12,7 @@ export const app = new Elysia()
   .use(
     cors({
       origin: "*",
-      allowedHeaders: ["Content-Type", "Authorization"],
+      allowedHeaders: ["Content-Type", "Authorization", "X-API-Key"],
     }),
   )
   .use(jwtPlugin)
@@ -26,12 +27,10 @@ export const app = new Elysia()
     }
   })
   .use(authRoutes)
-  .use(marketRoutes);
+  .use(marketRoutes)
+  .use(userRoutes);
 
 if (import.meta.main) {
-  app.listen({
-    port: PORT,
-    hostname: HOST,
-  });
+  app.listen({ port: PORT, hostname: HOST });
   console.log(`🚀 Server running at http://${HOST}:${PORT}`);
 }

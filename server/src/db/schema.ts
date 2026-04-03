@@ -18,6 +18,9 @@ export const usersTable = sqliteTable(
     username: text("username").notNull().unique(),
     email: text("email").notNull().unique(),
     passwordHash: text("password_hash").notNull(),
+    balance: real("balance").notNull().default(1000),
+    isAdmin: integer("is_admin", { mode: "boolean" }).notNull().default(false),
+    apiKey: text("api_key").unique(),
     createdAt: integer("created_at", { mode: "timestamp" })
       .notNull()
       .$defaultFn(() => new Date()),
@@ -28,6 +31,7 @@ export const usersTable = sqliteTable(
   (table) => ({
     usernameIdx: uniqueIndex("users_username_idx").on(table.username),
     emailIdx: uniqueIndex("users_email_idx").on(table.email),
+    apiKeyIdx: uniqueIndex("users_api_key_idx").on(table.apiKey),
   }),
 );
 
